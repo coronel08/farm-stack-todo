@@ -30,5 +30,8 @@ pip install -r requirements.txt
     * [x] create model.py and setup Models
     * [x] create database.py, connect MongoDB with Motor
     * [x] create functions to interact with DB
-* [] Test Queries
+* [x] Test Queries
+    * [x] Went into localhost/docs and tested out the post option
 * [] Setup Frontend
+    * [x] npx create-react-app frontend and remove all extra items
+    * [x] import bootstrap into index.js
