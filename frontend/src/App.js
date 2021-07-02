@@ -18,10 +18,21 @@ function App() {
       })
   })
 
+  // Update Todo State, gets submitted with addToHandler
+  const addToListHandler = (e, setProp) => {
+    e.preventDefault()
+    const item = e.target.value
+    setProp(item)
+  }
+
   // Post a todo button section
   const addToHandler = () => {
     axios.post('http://localhost:4000/api/todo/', { 'title': title, 'description': desc })
       .then(res => console.log(res))
+    // Clears all inputs 
+    Array.from(document.querySelectorAll('input')).forEach(
+      input => (input.value = "")
+    )
   }
 
 
@@ -67,10 +78,10 @@ function App() {
             <p className="card-text">Add your task below</p>
             <div className="">
               <input className="mb-2 form-control" placeholder="Title"
-                onChange={event => { setTitle(event.target.value) }}
+                onChange={event => addToListHandler(event, setTitle)}
               />
               <input className="mb-2 form-control" placeholder="Description"
-                onChange={event => { setDesc(event.target.value) }}
+                onChange={event => addToListHandler(event, setDesc)}
               />
               <button className="btn btn-dark p-3 mb-3 rounded" onClick={addToHandler}>
                 Add Task
@@ -83,6 +94,7 @@ function App() {
 
           {/* Todos handled and mapped in the todo.js*/}
           < Todo item={todo} />
+
         </div>
       </div>
     </div>
