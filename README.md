@@ -16,9 +16,14 @@ Uses the following technology stack:
 ## Deploy
 Setup Virtual Env and Dependencies
 ```
+<!-- Backend folder -->
 virtualenv venv
 source venv/bin/activate #activate on linux cmd
 pip install -r requirements.txt
+docker-compose up -d
+uvicorn main:app --reload --port 4000
+<!-- Frotnend folder -->
+npm start
 ```
 
 #### Todo
