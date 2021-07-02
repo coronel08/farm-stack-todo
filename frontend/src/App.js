@@ -1,7 +1,9 @@
+import React, { useState, useEffect } from 'react'
 import './App.css';
 import Layout from './components/Layout'
+import Todo from './components/Todo'
+
 import axios from 'axios'
-import React, { useState, useEffect } from 'react'
 
 function App() {
   const [todo, setTodo] = useState([{}])
@@ -9,50 +11,48 @@ function App() {
   const [desc, setDesc] = useState('')
 
   // Read Todos API, using axios used fetch version below
-  // useEffect(() => {
-  //   axios.get('http://localhost:4000/api/todo')
-  //     .then(res => {
-  //       console.log(res.data)
-  //       return {
-
-  //       }
-  //     })
-  // })
-
-  // Post a todo button section not ready to implement yet
-  // const addToHandler = () => {
-  //   axios.post('http://localhost:4000/api/todo', { 'title': title, 'description': desc })
-  //     .then(res => console.log(res))
-  // }
-
-
-  // Calls the fetch from the API,
   useEffect(() => {
-    fetchTodoList()
-  }, [])
+    axios.get('http://localhost:4000/api/todo')
+      .then(res => {
+        setTodo(res.data)
+      })
+  })
 
-  // Fetches the backend data and updates the todo
-  const fetchTodoList = async () => {
-    try {
-      const res = await fetch('http://localhost:4000/api/todo')
-      const data = await res.json()
-      // console.log(data)
-
-      setTodo(data.map((todoItem, index) => {
-        return {
-          title: todoItem.title,
-          desc: todoItem.description,
-          key: index,
-        }
-      }))
-    } catch (e) {
-      console.log("Something is wrong", e)
-    }
+  // Post a todo button section
+  const addToHandler = () => {
+    axios.post('http://localhost:4000/api/todo/', { 'title': title, 'description': desc })
+      .then(res => console.log(res))
   }
 
+
+  // // Calls the fetch from the API,
+  // useEffect(() => {
+  //   fetchTodoList()
+  // }, [])
+
+  // // Fetches the backend data without axios, gets called in useEffect above
+  // const fetchTodoList = async () => {
+  //   try {
+  //     const res = await fetch('http://localhost:4000/api/todo')
+  //     const data = await res.json()
+  //     // console.log(data)
+
+  //     setTodo(data.map((todoItem, index) => {
+  //       return {
+  //         title: todoItem.title,
+  //         desc: todoItem.description,
+  //         key: index,
+  //       }
+  //     }))
+  //   } catch (e) {
+  //     console.log("Something is wrong", e)
+  //   }
+  // }
+
   return (
-    // website header
     <div className="App bg-dark">
+
+      {/* Import Header */}
       < Layout />
 
       {/* card title */}
@@ -66,9 +66,13 @@ function App() {
           <div className="px-3">
             <p className="card-text">Add your task below</p>
             <div className="">
-              <input className="mb-2 form-control" placeholder="Title" />
-              <input className="mb-2 form-control" placeholder="Description" />
-              <button className="btn btn-dark p-3 mb-3 rounded" onClick={fetchTodoList}>
+              <input className="mb-2 form-control" placeholder="Title"
+                onChange={event => { setTitle(event.target.value) }}
+              />
+              <input className="mb-2 form-control" placeholder="Description"
+                onChange={event => { setDesc(event.target.value) }}
+              />
+              <button className="btn btn-dark p-3 mb-3 rounded" onClick={addToHandler}>
                 Add Task
               </button>
             </div>
@@ -77,16 +81,10 @@ function App() {
           {/* Break */}
           <div className="border d-inline mb-2"></div>
 
-          {/* Todos to be added in here*/}
-          <div>
-            {todo.map(function (td) {
-              return (<p key={td.index + td.title}>{td.title} - {td.desc} </p>)
-            })}
-          </div>
-
+          {/* Todos handled and mapped in the todo.js*/}
+          < Todo item={todo} />
         </div>
       </div>
-
     </div>
   );
 }

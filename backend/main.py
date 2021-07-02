@@ -12,7 +12,7 @@ from database import(
     removeTodo,
 )
 
-origins = ['http://localhost:3000']
+origins = ['http://localhost:3000', 'http://localhost:4000']
 
 app.add_middleware(
     CORSMiddleware,
