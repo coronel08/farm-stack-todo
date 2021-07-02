@@ -35,3 +35,5 @@ pip install -r requirements.txt
 * [] Setup Frontend
     * [x] npx create-react-app frontend and remove all extra items
     * [x] import bootstrap into index.js
+    * [] get api information into frontend
+    * [] break out frontend into layouts and functions
