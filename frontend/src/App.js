@@ -71,16 +71,16 @@ function App() {
 
       {/* card title */}
       <div className="">
-        <div className="card text-white bg-primary mx-5">
+        <div className="card text-white bg-primary mx-1 mx-md-5">
           <div className="card-body">
-            <h5 className="card-title">Card Title</h5>
+            <h5 className="card-title">Helpdesk Ticketing System</h5>
           </div>
 
           {/* card body */}
           <div className="px-3">
             <p className="card-text">Add your task below</p>
             <div className="">
-              <input className="mb-2 form-control" placeholder="Title"
+              <input className="mb-2 form-control" placeholder="Company"
                 onChange={event => addToListHandler(event, setTitle)}
               />
               <input className="mb-2 form-control" placeholder="Description"
