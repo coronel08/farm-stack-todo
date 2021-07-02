@@ -32,7 +32,7 @@ async def get_todo():
     response = await fetchAllTodos()
     return response
 
-@app.get("/api/todo{title}", response_model=Todo)
+@app.get("/api/todo/{title}", response_model=Todo)
 async def get_todo_by_id(title):
     response = await fetchOneTodo(title)
     if response:
@@ -41,7 +41,7 @@ async def get_todo_by_id(title):
 
 
 # Create 
-@app.post("/api/todo", response_model=Todo)
+@app.post("/api/todo/", response_model=Todo)
 async def post_todo(todo:Todo):
     response = await createTodo(todo.dict())
     if response:
@@ -50,7 +50,7 @@ async def post_todo(todo:Todo):
 
 
 # Update
-@app.put("/api/todo{title}/", response_model=Todo)
+@app.put("/api/todo/{title}/", response_model=Todo)
 async def put_todo(title:str, desc:str):
     response = await updateTodo(title, desc)
     if response:
@@ -58,7 +58,7 @@ async def put_todo(title:str, desc:str):
     raise HTTPException(404, f"No Todo Item by that {title}")
 
 # Delete
-@app.delete("/api/todo{title}")
+@app.delete("/api/todo/{title}")
 async def delete_todo(title):
     response = await removeTodo(title)
     if response:

@@ -4,7 +4,7 @@ import axios from 'axios'
 function Todo({ item }) {
 
     const deleteTodoHandler = (title) => {
-        axios.delete(`http://localhost:4000/api/todo${title}`)
+        axios.delete(`http://localhost:4000/api/todo/${title}`)
             .then(res => console.log(res.data))
     }
 
