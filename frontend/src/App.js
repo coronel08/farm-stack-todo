@@ -36,6 +36,8 @@ function App() {
     Array.from(document.querySelectorAll('input')).forEach(
       input => (input.value = "")
     )}
+    setTitle("")
+    setDesc("")
   }
 
 
