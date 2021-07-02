@@ -8,22 +8,22 @@ function App() {
   const [title, setTitle] = useState('')
   const [desc, setDesc] = useState('')
 
-  // Read Todos API, using axios 
-  useEffect(() => {
-    axios.get('http://localhost:4000/api/todo')
-      .then(res => {
-        console.log(res.data)
-        return {
+  // Read Todos API, using axios used fetch version below
+  // useEffect(() => {
+  //   axios.get('http://localhost:4000/api/todo')
+  //     .then(res => {
+  //       console.log(res.data)
+  //       return {
 
-        }
-      })
-  })
+  //       }
+  //     })
+  // })
 
-  // Post a todo
-  const addToHandler = () => {
-    axios.post('http://localhost:4000/api/todo', { 'title': title, 'description': desc })
-      .then(res => console.log(res))
-  }
+  // Post a todo button section not ready to implement yet
+  // const addToHandler = () => {
+  //   axios.post('http://localhost:4000/api/todo', { 'title': title, 'description': desc })
+  //     .then(res => console.log(res))
+  // }
 
 
   // Calls the fetch from the API,
