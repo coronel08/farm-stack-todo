@@ -27,12 +27,15 @@ function App() {
 
   // Post a todo button section
   const addToHandler = () => {
+    if (!title && !desc){
+      alert('Please fill out the form')
+    } else { 
     axios.post('http://localhost:4000/api/todo/', { 'title': title, 'description': desc })
       .then(res => console.log(res))
     // Clears all inputs 
     Array.from(document.querySelectorAll('input')).forEach(
       input => (input.value = "")
-    )
+    )}
   }
 
 
